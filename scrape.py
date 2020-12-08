@@ -4,11 +4,9 @@ import requests
 import tqdm
 import time
 
+
 pd.set_option('display.max_columns', 100)
 pd.set_option('display.width', 255)
-
-
-LINK = 'https://rocketleague.tracker.network/rocket-league/profile/steam/76561198415606823/overview'
 
 
 def get_players_mmr(df):
@@ -56,10 +54,8 @@ def parse_page(row):
 
 
 def run():
-    #csv_loc = 'players.csv'
-    #df = pd.read_csv(csv_loc)
-    data = [['mitchy.' + str(i), LINK] for i in range(10)]
-    df = pd.DataFrame(data) 
+    csv_loc = 'players.csv'
+    df = pd.read_csv(csv_loc)
     mmr_df = get_players_mmr(df)
     print(mmr_df)
 
