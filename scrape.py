@@ -44,7 +44,6 @@ def parse_page(row):
     link = row[1]
     name = row[0]
     page = requests.get(link)
-    time.sleep(1)
     soup = BeautifulSoup(page.text, 'lxml')
     lines = [l.parent for l in soup.find_all('script')]
     data_str = [str(l) for l in lines if 'INITIAL_STATE' in str(l)][0]
