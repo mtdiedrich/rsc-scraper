@@ -11,6 +11,7 @@ pd.set_option('display.width', 255)
 
 """
 If you need help with usage, you can message me (mitchy.#6281)
+If something doesn't work the way it should, you can message me.
 I might not respond because that's just how I am.
 I may or may not update this if/when it gets broken by TRN.
 I may or may not update this to be of a higher quality.
