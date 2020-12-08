@@ -14,7 +14,7 @@ If you need help with usage, you can message me (mitchy.#6281)
 If something doesn't work the way it should, you can message me.
 I might not respond because that's just how I am.
 I may or may not update this if/when it gets broken by TRN.
-I may or may not update this to be of a higher quality.
+I may or may not update improve the quality.
 I may or may nut add instructions to the README.
 Licensing is more effort than this is worth. Anyone can use this for whatever.
 I think that error rows mean that that account hasn't been played on this season.
