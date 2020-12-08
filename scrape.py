@@ -55,6 +55,9 @@ def parse_page(row):
     link = row[2]
     name = row[1]
     page = requests.get(link)
+    time.sleep(1) # this probably isn't necessary, but I ran this utility without this line once and the entire website crashed
+    # at first I thought they were just blocking me from scraping, but downforeveryoneorjustme.com confirmed the whole thing was down
+    # it was probably a coincidence, but, out of an abundance of caution, I inserted the sleeper
     soup = BeautifulSoup(page.text, 'lxml')
     lines = [l.parent for l in soup.find_all('script')]
     data_str = [str(l) for l in lines if 'INITIAL_STATE' in str(l)][0]
