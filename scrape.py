@@ -29,8 +29,6 @@ def get_players_mmr(df):
         except:
             mmr_data = list(row) + [None for e in range(18)]
             errors.append(row)
-            print('Link error: ', row[2])
-            print('Does this TRN page not have tournament data?')
         data.append(mmr_data)
     df = pd.DataFrame(data)
     df.columns = ['RSC ID', 'Player', 'TRN Link', 'Unranked MMR', 
@@ -41,6 +39,9 @@ def get_players_mmr(df):
     df = df.drop([c for c in df.columns if 'Unranked' in c], axis=1)
     errors_df = pd.DataFrame(errors)
     errors_df.to_csv('errors.csv')
+    print('ERRORS BELOW')
+    print(errors_df)
+    print()
     return df
 
 
@@ -81,8 +82,8 @@ def run():
     if len(cols) == 2:
         df['RSC ID'] = None
         df = df[['RSC ID'] + list(cols)] 
-    df = df.head(5)
     mmr_df = get_players_mmr(df).dropna().reset_index(drop=True)
+    print('MMR Sheet')
     print(mmr_df)
     df.to_csv('mmr.csv')
 
