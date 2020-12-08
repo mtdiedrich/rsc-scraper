@@ -4,6 +4,13 @@ import requests
 import tqdm
 import time
 
+"""
+If you need help with usage, you can message me (mitchy.#6281)
+I might not respond because that's just how I am.
+I may or may not update this if/when it gets broken by TRN.
+I may or may not update this to be of a higher quality.
+Licensing is more effort than this is worth. Anyone can use this for whatever.
+"""
 
 pd.set_option('display.max_columns', 100)
 pd.set_option('display.width', 255)
