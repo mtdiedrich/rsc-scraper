@@ -22,11 +22,13 @@ I think that 'None' rows mean that that account hasn't been played on this seaso
 
 def get_players_mmr(df):
     data = []
+    errors = []
     for row in tqdm.tqdm(df.values):
         try:
             mmr_data = list(row) + list(parse_page(row))
         except:
             mmr_data = list(row) + [None for e in range(18)]
+            errors.append(row)
             print('Link error: ', row[2])
             print('Does this TRN page not have tournament data?')
         data.append(mmr_data)
@@ -37,6 +39,8 @@ def get_players_mmr(df):
             'Rumble GP', 'Dropshot MMR', 'Dropshot GP', 'Snowday MMR',
             'Snowday GP', 'Tournament MMR', 'Tournament GP']
     df = df.drop([c for c in df.columns if 'Unranked' in c], axis=1)
+    errors_df = pd.DataFrame(errors)
+    errors_df.to_csv('errors.csv')
     return df
 
 
@@ -73,13 +77,12 @@ def parse_page(row):
 def run():
     csv_loc = 'players.csv'
     df = pd.read_csv(csv_loc, header=None)
-    df = df[df.columns[1:]]
     cols = df.columns
     if len(cols) == 2:
         df['RSC ID'] = None
         df = df[['RSC ID'] + list(cols)] 
     df = df.head(5)
-    mmr_df = get_players_mmr(df).reset_index(drop=True)
+    mmr_df = get_players_mmr(df).dropna().reset_index(drop=True)
     print(mmr_df)
     df.to_csv('mmr.csv')
 
