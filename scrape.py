@@ -3,6 +3,7 @@ import pandas as pd
 import requests
 import tqdm
 import time
+import lxml
 
 
 pd.set_option('display.max_columns', 100)
@@ -22,13 +23,8 @@ I think that 'None' rows mean that that account hasn't been played on this seaso
 
 def get_players_mmr(df):
     data = []
-    errors = []
     for row in tqdm.tqdm(df.values):
-        try:
-            mmr_data = list(row) + list(parse_page(row))
-        except:
-            mmr_data = list(row) + [None for e in range(18)]
-            errors.append(row)
+        mmr_data = list(row) + list(parse_page(row))
         data.append(mmr_data)
     df = pd.DataFrame(data)
     df.columns = ['RSC ID', 'Player', 'TRN Link', 'Unranked MMR', 
@@ -37,11 +33,6 @@ def get_players_mmr(df):
             'Rumble GP', 'Dropshot MMR', 'Dropshot GP', 'Snowday MMR',
             'Snowday GP', 'Tournament MMR', 'Tournament GP']
     df = df.drop([c for c in df.columns if 'Unranked' in c], axis=1)
-    errors_df = pd.DataFrame(errors)
-    errors_df.to_csv('errors.csv')
-    print('ERRORS BELOW')
-    print(errors_df)
-    print()
     return df
 
 
@@ -51,7 +42,10 @@ def get_display_value(string, value_name):
     value_str = string[loc:]
     value_loc = value_str.find('displayValue')
     value = value_str[value_loc:]
-    value = value.split('":"')[1].split('","')[0]
+    try:
+        value = value.split('":"')[1].split('","')[0]
+    except:
+        value = None
     return value
 
 
@@ -77,15 +71,12 @@ def parse_page(row):
 
 def run():
     csv_loc = 'players.csv'
-    df = pd.read_csv(csv_loc, header=None)
-    cols = df.columns
-    if len(cols) == 2:
-        df['RSC ID'] = None
-        df = df[['RSC ID'] + list(cols)] 
-    mmr_df = get_players_mmr(df).dropna().reset_index(drop=True)
+    df = pd.read_csv('players.csv')
+    print('Scraping MMRs')
+    mmr_df = get_players_mmr(df).reset_index(drop=True)
     print('MMR Sheet')
     print(mmr_df)
-    df.to_csv('mmr.csv')
+    mmr_df.to_csv('mmr.csv')
 
 
 run()
