@@ -4,7 +4,7 @@
 
 These instructions assume very little knowledge.
 
-1. Get Python. If you get it from somewhere other than the Microsoft store, you'll have to add it to your path. (Here's the Microsoft Store version.)[https://www.microsoft.com/store/productId/9NJ46SX7X90P]
+1. Get Python. If you get it from somewhere other than the Microsoft store, you'll have to add it to your path. [Here's the Microsoft Store version.](https://www.microsoft.com/store/productId/9NJ46SX7X90P)
 
 2. Download the files using the button labelled "Code" or "Download" above. If you're unsure of which option to pick, select "Download ZIP" and unzip the file.
 
