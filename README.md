@@ -16,4 +16,4 @@ These instructions assume very little knowledge. Feel free to DM me (mitchy.#628
 
 6. When the utility is finished, the PowerShell window will close and the MMR data will be stored in a new file: 'mmr.csv'
 
-* - There are many special characters that will cause errors if present in this column. I don't have an exhaustive list of said characters, but, as a broad rule of thumb if you can't see a character on your keyboard, it should be removed from player names to make this utility function. 
+/* - There are many special characters that will cause errors if present in this column. I don't have an exhaustive list of said characters, but, as a broad rule of thumb if you can't see a character on your keyboard, it should be removed from player names to make this utility function. 
