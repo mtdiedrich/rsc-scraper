@@ -1,5 +1,7 @@
 # rsc-scraper
 
+10/05/2022 - I highly doubt this still works. 
+
 # Usage
 
 These instructions assume very little knowledge. Feel free to DM me (mitchy.#6281) if you need additional help.
